@@ -37,7 +37,7 @@
         .addEventListener("click", function (event) {
           if (!navigator.onLine) {
             alert("You are currently offline");
-            event.preventDefault(); // Prevents the default behavior of the download
+            event.preventDefault();
           } else {
             const link = document.getElementById("link").value;
             window.location.href = link;
