@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video Player</title>
+    <script
+      src="https://kit.fontawesome.com/72acd2a881.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Video Player</h1>
+      <input type="file" id="videoFileInput" accept="video/*" />
+      <video
+        id="videoPlayer"
+        controls
+        width="700"
+        style="display: none"
+      ></video>
+    </div>
+    <div class="download">
+      <input
+        type="text"
+        id="link"
+        placeholder="https://www.video.com/watch?v=5mvCVJIZWtA"
+      />
+      <button id="download">
+        <i class="fa-solid fa-cloud-arrow-down"></i>
+      </button>
+    </div>
+    <script>
+      document
+        .getElementById("videoFileInput")
+        .addEventListener("change", function (event) {
+          const file = event.target.files[0];
+          if (file) {
+            const videoPlayer = document.getElementById("videoPlayer");
+            videoPlayer.src = URL.createObjectURL(file);
+            videoPlayer.style.display = "block";
+            videoPlayer.play();
+          }
+        });
+      document
+        .getElementById("download")
+        .addEventListener("click", function (event) {
+          window.addEventListener("offline", function () {
+            alert("You are currently offline");
+          });
+          const link = document.getElementById("link").value;
+          window.location.href = link;
+        });
+    </script>
+  </body>
+</html>
